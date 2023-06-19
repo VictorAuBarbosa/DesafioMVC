@@ -1,0 +1,34 @@
+﻿@model Pedido
+
+<h2>Fazer Pedido de Pizza</h2>
+<form asp-controller="Pedido" asp-action="FazerPedido" method="post">
+<p>Nome da Pizza: @Model.NomePizza</p>
+<p>Quantidade: <span id="quantidade">@Model.Quantidade</span></p>
+
+@using (Html.BeginForm("FazerPedido", "Pedido", FormMethod.Post))
+{
+    <input asp-for=Quantidade type="submit" value="Fazer Pedido" />
+}
+
+<input type="button" value="+" onclick="incrementar()" />
+<input type="button" value="-" onclick="decrementar()" />
+</form>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <p>@ViewBag.Message</p>
+}
+
+<script>
+    function incrementar() {
+        var quantidadeElement = document.getElementById("quantidade");
+        quantidadeElement.innerText = parseInt(quantidadeElement.innerText) + 1;
+    }
+
+    function decrementar() {
+        var quantidadeElement = document.getElementById("quantidade");
+        var quantidade = parseInt(quantidadeElement.innerText);
+        if (quantidade > 0) {
+            quantidadeElement.innerText = quantidade - 1;
+        }
+    }
+</script>

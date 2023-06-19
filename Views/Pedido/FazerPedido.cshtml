@@ -1,0 +1,11 @@
+﻿@model Pedido
+
+<h2>Pedido Realizado</h2>
+
+<p>Nome da Pizza: @Model.NomePizza</p>
+<p>Quantidade: @Model.Quantidade</p>
+
+@if (!string.IsNullOrEmpty(TempData["Message"] as string))
+{
+    <p>@TempData["Message"]</p>
+}
